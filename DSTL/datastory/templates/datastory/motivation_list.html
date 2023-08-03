@@ -1,0 +1,36 @@
+{% extends 'datastory/base.html' %}
+
+{% block title %}
+    Motivation List
+{% endblock %}
+
+{% block create_button %}
+    {% if perms.datastory.add_motivation %}
+    <a
+        href="{% url 'datastory_motivation_create_urlpattern'  %}"
+        class="button button-primary">
+      Create New Motivation</a>
+    {% endif %}
+{% endblock %}
+
+{% block org_content %}
+  <h2>Motivation List</h2>
+    {% if perms.datastory.add_motivation %}
+    <div class="mobile">
+      <a
+          href="{% url 'datastory_motivation_create_urlpattern' %}"
+          class="button button-primary">
+        Create New Motivation</a>
+    </div>
+    {% endif %}
+  <ul>
+    {% for motivation in motivation_list %}
+      <li>
+        <a href="{{ motivation.get_absolute_url }}">
+          {{ motivation }}</a>
+      </li>
+    {% empty %}
+      <li><em>There are currently no motivation in the database.</em></li>
+    {% endfor %}
+  </ul>
+{% endblock %}

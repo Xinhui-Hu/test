@@ -1,0 +1,15 @@
+{% extends 'datastory/base.html' %}
+
+{% block title %}
+    Update Motivation
+{% endblock %}
+
+{% block content %}
+    <form
+        action="{{ motivation.get_update_url }}"
+        method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit" class="button button-primary">Update Motivation</button>
+    </form>
+{% endblock %}

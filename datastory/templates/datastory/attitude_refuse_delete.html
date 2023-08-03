@@ -1,0 +1,27 @@
+{% extends 'datastory/base.html' %}
+
+{% block title %}
+    Error Deleting Attitude
+{% endblock %}
+
+{% block content %}
+    <div>
+        <h2>Error Deleting Attitude</h2>
+        <p>
+            You may not delete attitude {{ attitude }}.  This
+            attitude is currently associated to existing
+            strategies:
+        </p>
+
+        <ul>
+            {% for strategy in strategy %}
+            <li><a href="{{ strategy.get_absolute_url }}">{{ strategy }}</a></li>
+            {%  endfor %}
+        </ul>
+
+        <p>
+            Return to <a href="{% url 'datastory_attitude_list_urlpattern' %}">Attitude List</a>.
+        </p>
+    </div>
+{% endblock %}
+

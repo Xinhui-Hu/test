@@ -1,0 +1,25 @@
+{% extends 'datastory/base.html' %}
+
+{% block title %}
+    Error Deleting Strategy
+{% endblock %}
+
+{% block content %}
+    <div>
+        <h2>Error Deleting Strategy</h2>
+        <p>
+            You may not delete strategy {{ strategy }}.  This
+            strategy is currently associated existing datastories:
+        </p>
+
+        <ul>
+            {% for datastory in datastory %}
+            <li><a href="{{ datastory.get_absolute_url }}">{{ datastory.dimension }}</a></li>
+            {%  endfor %}
+        </ul>
+
+        <p>
+            Return to <a href="{% url 'datastory_strategy_create_urlpattern' %}">Strategy List</a>.
+        </p>
+    </div>
+{% endblock %}

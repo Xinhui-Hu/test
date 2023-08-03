@@ -1,0 +1,33 @@
+{% extends 'datastory/base.html' %}
+
+{% block title %}
+    Datastory List
+{% endblock %}
+
+{% block create_button %}
+    {% if perms.datastory.add_dimension %}
+      <a href="{% url 'datastory_datastory_create_urlpattern' %}"
+         class="button button-primary">
+        Create New Datastory</a>
+    {% endif %}
+{% endblock %}
+
+{% block org_content %}
+  <h2>Datastory List</h2>
+    {% if perms.datastory.add_dimension %}
+    <div class="mobile">
+      <a href="{% url 'datastory_datastory_create_urlpattern' %}"
+         class="button button-primary">
+        Create New Datastory</a>
+    </div>
+    {% endif %}
+    <ul>
+        {% for datastory in datastory_list %}
+            <li>
+                <a href="{{ datastory.get_absolute_url }}">{{ datastory }}</a>
+            </li>
+        {% empty %}
+            <li><em>There are currently no datastory available.</em></li>
+        {% endfor %}
+    </ul>
+{% endblock %}

@@ -1,0 +1,36 @@
+{% extends 'datastory/base.html' %}
+
+{% block title %}
+    Strategy List
+{% endblock %}
+
+{% block create_button %}
+    {% if perms.datastory.add_strategy %}
+        <a
+                href="{% url 'datastory_strategy_create_urlpattern' %}"
+                class="button button-primary">
+            Create New Strategy</a>
+    {% endif %}
+{% endblock %}
+
+{% block org_content %}
+    <h2>Strategy List</h2>
+    {% if perms.datastory.add_strategy %}
+        <div class="mobile">
+            <a
+                    href="{% url 'datastory_strategy_create_urlpattern' %}"
+                    class="button button-primary">
+                Create New Strategy</a>
+        </div>
+    {% endif %}
+    <ul>
+        {% for strategy in strategy_list %}
+            <li>
+                <a href="{{ strategy.get_absolute_url }}">
+                    {{ strategy }}</a>
+            </li>
+        {% empty %}
+            <li><em>There are currently no strategy available.</em></li>
+        {% endfor %}
+    </ul>
+{% endblock %}

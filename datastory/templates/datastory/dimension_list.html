@@ -1,0 +1,36 @@
+{% extends 'datastory/base.html' %}
+
+{% block title %}
+    Dimension List
+{% endblock %}
+
+{% block create_button %}
+    {% if perms.datastory.add_dimension %}
+    <a
+        href="{% url 'datastory_dimension_create_urlpattern'  %}"
+        class="button button-primary">
+      Create New Dimension</a>
+    {% endif %}
+{% endblock %}
+
+{% block org_content %}
+  <h2>Dimension List</h2>
+    {% if perms.datastory.add_dimension %}
+    <div class="mobile">
+      <a
+          href="{% url 'datastory_dimension_create_urlpattern' %}"
+          class="button button-primary">
+        Create New Dimension</a>
+    </div>
+    {% endif %}
+  <ul>
+    {% for dimension in dimension_list %}
+      <li>
+        <a href="{{ dimension.get_absolute_url }}">
+          {{ dimension }}</a>
+      </li>
+    {% empty %}
+      <li><em>There are currently no dimension in the database.</em></li>
+    {% endfor %}
+  </ul>
+{% endblock %}

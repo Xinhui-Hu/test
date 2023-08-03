@@ -1,0 +1,36 @@
+{% extends 'datastory/base.html' %}
+
+{% block title %}
+    Attitude List
+{% endblock %}
+
+{% block create_button %}
+    {% if perms.datastory.add_attitude %}
+    <a
+        href="{% url 'datastory_attitude_create_urlpattern'  %}"
+        class="button button-primary">
+      Create New Attitude</a>
+    {% endif %}
+{% endblock %}
+
+{% block org_content %}
+  <h2>Intended Audiences' Attitude List</h2>
+    {% if perms.datastory.add_attitude %}
+    <div class="mobile">
+      <a
+          href="{% url 'datastory_attitude_create_urlpattern' %}"
+          class="button button-primary">
+        Create New Attitude</a>
+    </div>
+    {% endif %}
+  <ul>
+    {% for attitude in attitude_list %}
+      <li>
+        <a href="{{ attitude.get_absolute_url }}">
+          {{ attitude }}</a>
+      </li>
+    {% empty %}
+      <li><em>There are currently no attitude in the database.</em></li>
+    {% endfor %}
+  </ul>
+{% endblock %}

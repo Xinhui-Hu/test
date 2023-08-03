@@ -1,0 +1,52 @@
+{% extends 'datastory/base.html' %}
+
+{% block title %}
+    Attitude - {{ attitude }}
+{% endblock %}
+
+{% block content %}
+<article>
+  <div class="row">
+  <div class="offset-by-two eight columns">
+    <h2>{{ attitude }}</h2>
+    <ul class="inline">
+        {% if perms.datastory.change_attitude %}
+        <li>
+          <a
+              href="{{ attitude.get_update_url }}"
+              class="button button-primary">
+            Edit Attitude</a></li>
+        {% endif %}
+        {% if perms.datastory.delete_attitude %}
+        <li>
+          <a
+              href="{{ attitude.get_delete_url }}"
+              class="button button-primary">
+            Delete Attitude</a></li>
+        {% endif %}
+    </ul>
+    <section>
+        <table>
+            <tr>
+                <th>The intended audience have <span style="color: #f58634">{{ attitude }} </span> attitude toward librarian works</th>
+
+            </tr>
+        </table>
+    </section>
+
+    <section>
+        <h3>Strategy</h3>
+        <ul>
+            {% for strategy in strategy_list %}
+                <li>
+                    <a href="{{ strategy.get_absolute_url }}">{{ strategy }}</a>
+                </li>
+            {% empty %}
+                <li><em>There are currently no recommended strategy for this argument.</em></li>
+            {% endfor %}
+        </ul>
+    </section>
+  </div></div> <!-- row -->
+
+</article>
+{% endblock %}

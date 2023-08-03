@@ -1,0 +1,52 @@
+{% extends 'datastory/base.html' %}
+
+{% block title %}
+    Dimension - {{ dimension }}
+{% endblock %}
+
+{% block content %}
+<article>
+  <div class="row">
+  <div class="offset-by-two eight columns">
+    <h2>{{ dimension }}</h2>
+    <ul class="inline">
+        {% if perms.datastory.change_dimension %}
+        <li>
+          <a
+              href="{{ dimension.get_update_url }}"
+              class="button button-primary">
+            Edit Dimension</a></li>
+        {% endif %}
+        {% if perms.datastory.delete_dimension %}
+        <li>
+          <a
+              href="{{ dimension.get_delete_url }}"
+              class="button button-primary">
+            Delete Dimension</a></li>
+        {% endif %}
+    </ul>
+    <section>
+        <table>
+            <tr>
+                <th>Dimension Name:</th>
+                <td>{{ dimension.dimension_name }}</td>
+            </tr>
+        </table>
+    </section>
+
+    <section>
+        <h3>Datastory</h3>
+        <ul>
+            {% for datastory in datastory_list %}
+                <li>
+                    <a href="{{ datastory.get_absolute_url }}">{{ datastory }}</a>
+                </li>
+            {% empty %}
+                <li><em>There are currently no recommended datastory for this dimension.</em></li>
+            {% endfor %}
+        </ul>
+    </section>
+  </div></div> <!-- row -->
+
+</article>
+{% endblock %}

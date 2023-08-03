@@ -1,0 +1,50 @@
+{% extends 'datastory/base.html' %}
+
+{% block title %}
+    Datastory - {{ datastory }}
+{% endblock %}
+
+{% block content %}
+<article>
+  <div class="row">
+  <div class="offset-by-two eight columns">
+    <h2>{{ dimension }}</h2>
+    <ul class="inline">
+        {% if perms.datastory.change_datastory %}
+        <li>
+          <a href="{{ datastory.get_update_url }}"
+          class="button button-primary">
+            Edit Datastory</a></li>
+        {% endif %}
+        {% if perms.datastory.delete_datastory %}
+        <li>
+          <a href="{{ datastory.get_delete_url }}"
+          class="button button-primary">
+            Delete Datastory</a></li>
+        {% endif %}
+    </ul>
+    <section>
+        <table>
+            <tr>
+                <th>Dimension:</th>
+                <td><a href="{{ dimension.get_absolute_url }}">{{ dimension }}</a></td>
+            </tr>
+            <tr>
+                <th>Strategy:</th>
+                <td><a href="{{ strategy.get_absolute_url }}">{{ strategy }}</a></td>
+            </tr>
+{#            <tr>#}
+{#                <th>Datastory Name:</th>#}
+{#                <td>{{ datastory.datastory_name }}</td>#}
+{#            </tr>#}
+            <tr>
+                <th>Datastory Content:</th>
+                <td>{{ datastory.story_content }}</td>
+            </tr>
+        </table>
+    </section>
+
+  </div></div> <!-- row -->
+
+</article>
+{% endblock %}

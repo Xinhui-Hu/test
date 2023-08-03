@@ -1,0 +1,15 @@
+{% extends 'datastory/base.html' %}
+
+{% block title %}
+    Create Dimension
+{% endblock %}
+
+{% block content %}
+    <form
+        action="{% url 'datastory_dimension_create_urlpattern'%}"
+        method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit" class="button button-primary">Create Dimension</button>
+    </form>
+{% endblock %}

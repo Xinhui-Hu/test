@@ -1,0 +1,21 @@
+{% extends 'datastory/base.html' %}
+
+{% block title %}
+    Delete Datastory
+{% endblock %}
+
+{% block content %}
+    <form
+        action="{{ datastory.get_delete_url }}"
+        method="post">
+        {% csrf_token %}
+        <p>
+            Are you sure that you want to delete
+            datastory: {{ datastory }}?
+        </p>
+        <a href="{{ datastory.get_absolute_url }}"
+            class="button button-primary">
+            Cancel</a>
+        <button type="submit" class="button button-primary">Delete Datastory</button>
+    </form>
+{% endblock %}

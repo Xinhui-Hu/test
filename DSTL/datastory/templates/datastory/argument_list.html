@@ -1,0 +1,36 @@
+{% extends 'datastory/base.html' %}
+
+{% block title %}
+    Argument List
+{% endblock %}
+
+{% block create_button %}
+    {% if perms.datastory.add_argument %}
+    <a
+        href="{% url 'datastory_argument_create_urlpattern'  %}"
+        class="button button-primary">
+      Create New Argument</a>
+    {% endif %}
+{% endblock %}
+
+{% block org_content %}
+  <h2>Argument List</h2>
+    {% if perms.datastory.add_argument %}
+    <div class="mobile">
+      <a
+          href="{% url 'datastory_argument_create_urlpattern' %}"
+          class="button button-primary">
+        Create New Argument</a>
+    </div>
+    {% endif %}
+  <ul>
+    {% for argument in argument_list %}
+      <li>
+        <a href="{{ argument.get_absolute_url }}">
+          {{ argument }}</a>
+      </li>
+    {% empty %}
+      <li><em>There are currently no argument in the database.</em></li>
+    {% endfor %}
+  </ul>
+{% endblock %}

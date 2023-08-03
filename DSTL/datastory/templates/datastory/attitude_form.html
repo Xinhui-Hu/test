@@ -1,0 +1,15 @@
+{% extends 'datastory/base.html' %}
+
+{% block title %}
+    Create Attitude
+{% endblock %}
+
+{% block content %}
+    <form
+        action="{% url 'datastory_attitude_create_urlpattern'%}"
+        method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit" class="button button-primary">Create Attitude</button>
+    </form>
+{% endblock %}

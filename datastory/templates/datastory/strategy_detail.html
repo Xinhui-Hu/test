@@ -1,0 +1,67 @@
+{% extends 'datastory/base.html' %}
+
+{% block title %}
+    Strategy - {{ strategy }}
+{% endblock %}
+
+{% block content %}
+    <article>
+        <div class="row">
+            <div class="offset-by-two eight columns">
+                <h2>{{ strategy }}</h2>
+                <ul class="inline">
+                    {% if perms.datastory.change_strategy %}
+                    <li>
+                        <a href="{{ strategy.get_update_url }}"
+                           class="button button-primary">
+                            Edit Strategy</a></li>
+                    {% endif %}
+                {% if perms.datastory.delete_strategy %}
+                    <li>
+                        <a href="{{ strategy.get_delete_url }}"
+                           class="button button-primary">
+                            Delete Strategy</a></li>
+                {% endif %}
+                </ul>
+
+                   <section>
+        <table>
+            <tr>
+                <th>Argument:</th>
+                <td><a href="{{ argument.get_absolute_url }}">{{ argument }}</a></td>
+            </tr>
+            <tr>
+                <th>Motivation:</th>
+                <td><a href="{{ motivation.get_absolute_url }}">{{ motivation }}</a></td>
+            </tr>
+
+            <tr>
+                <th>Attitude:</th>
+                <td><a href="{{ attitude.get_absolute_url }}">{{ attitude }}</a></td>
+            </tr>
+            <tr>
+                <th>Strategy Name:</th>
+                <td>{{ strategy.strategy_name }}</td>
+            </tr>
+        </table>
+
+    </section>
+
+    <section>
+        <h3>Datastories</h3>
+        <ul>
+            {% for datastory in datastory_list %}
+                <li>
+                    <a href="{{ datastory.get_absolute_url }}">{{ datastory.dimension }}</a>
+                </li>
+            {% empty %}
+                <li><em>There are currently no dimension associated for this strategy.</em></li>
+            {% endfor %}
+        </ul>
+    </section>
+
+            </div>
+        </div> <!-- row -->
+
+    </article>
+{% endblock %}

@@ -1,0 +1,26 @@
+{% extends 'datastory/base.html' %}
+
+{% block title %}
+    Error Deleting Dimension
+{% endblock %}
+
+{% block content %}
+    <div>
+        <h2>Error Deleting Dimension</h2>
+        <p>
+            You may not delete dimension {{ dimension }}.  This
+            dimension is currently associated to existing
+            datastories:
+        </p>
+
+        <ul>
+            {% for datastory in datastories %}
+            <li><a href="{{ datastory.get_absolute_url }}">{{ datastory }}</a></li>
+            {%  endfor %}
+        </ul>
+
+        <p>
+            Return to <a href="{% url 'datastory_datastory_list_urlpattern' %}">Dimension List</a>.
+        </p>
+    </div>
+{% endblock %}

@@ -1,0 +1,26 @@
+{% extends 'datastory/base.html' %}
+
+{% block title %}
+    Error Deleting Argument
+{% endblock %}
+
+{% block content %}
+    <div>
+        <h2>Error Deleting Argument</h2>
+        <p>
+            You may not delete argument {{ argument }}.  This
+            argument is currently associated to existing
+            strategies:
+        </p>
+
+        <ul>
+            {% for strategy in strategies %}
+            <li><a href="{{ strategy.get_absolute_url }}">{{ strategy }}</a></li>
+            {%  endfor %}
+        </ul>
+
+        <p>
+            Return to <a href="{% url 'datastory_argument_list_urlpattern' %}">Argument List</a>.
+        </p>
+    </div>
+{% endblock %}
